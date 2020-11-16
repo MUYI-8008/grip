@@ -1,0 +1,49 @@
+<mujoco>
+	<body mocap="true" name="robot0:mocap" pos="0 0 0">
+		<geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.7" size="0.005 0.005 0.005" type="box"></geom>
+		<geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="1 0.005 0.005" type="box"></geom>
+		<geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 1 0.001" type="box"></geom>
+		<geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.1" size="0.005 0.005 1" type="box"></geom>
+	</body>
+	<body childclass="robot0:fetch" name="robot0:base_link" pos="0.2869 0.2641 0">
+		<geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="base_link" name="robot0:base_link" class="robot0:grey"/>
+        <body name="Link2" pos="0 0 0.0835" quat="0.671808 0 0 -0.740726">
+            <inertial pos="0.0394426 -0.0291988 0.0760949" quat="0.493339 0.410588 0.0447935 0.765524" mass="1.08392" diaginertia="0.00202332 0.00179292 0.000630446" />
+            <joint name="robot0:base_rotation" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14 3.14" />
+            <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="Link2" name="robot0:Link2" class="robot0:grey" />
+            <body name="Link3" pos="-0.012277 -0.041393 0.0895" quat="0.475039 0.475041 0.523773 0.523771">
+                <inertial pos="-3.4535e-05 0.16228 -0.024396" quat="0.848809 0.5287 6.22766e-05 0.000143256" mass="1.2325" diaginertia="0.0093196 0.00852145 0.00125104" />
+                <joint name="robot0:base_updown" damping="1000" pos="0 0 0" axis="0 0 1" limited="true" range="-1.57 1" />
+                <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="Link3" name="robot0:Link3" />
+                <body name="Link4" pos="-5e-05 0.20668 0.02">
+                    <inertial pos="0.0743592 0.069442 -0.0463502" quat="-0.132673 0.697327 0.156517 0.686757" mass="0.764788" diaginertia="0.00122493 0.00111613 0.000609374" />
+                    <joint name="robot0:arm_updown" armature="8" damping="100" pos="0 0 0" axis="0 0 1" limited="true" range="-1 1.57" />
+                    <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="Link4" name="robot0:Link4" />
+                    <body name="Link5" pos="0.11743 0.073853 -0.0465" quat="0.707105 0 0.707108 0">
+                        <inertial pos="0.00084105 4.08857e-05 0.123676" quat="0.999914 -0.000188911 0.0130896 0.000825095" mass="0.349388" diaginertia="0.00123344 0.00122896 0.000196108" />
+                        <joint name="robot0:wrist_rotation" armature="8" damping="10" pos="0 0 0" axis="0 0 -1" limited="true" range="-3.14 3.14" />
+                        <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="Link5" name="robot0:Link5" />
+                        <body name="Link6" pos="-0.01575 0 0.19605" quat="0.707105 0 0.707108 0">
+                            <inertial pos="-0.037394 0.000667388 0.0109212" quat="0.105897 0.850256 0.161455 0.489676" mass="0.072223" diaginertia="6.00474e-05 5.90855e-05 2.22333e-05" />
+                            <joint name="robot0:wrist_updown" armature="8" damping="10" pos="0 0 0" axis="0 0 -1" limited="true" range="-1.57 1.57" />
+                            <geom type="mesh" rgba="0.752941 0.752941 0.752941 1" mesh="Link6" name="robot0:Link6" />
+							<body euler="0 0 0" name="robot0:gripper_link" pos="-0.1 0 0.017">
+								<body childclass="robot0:fetchGripper" name="L_Link" pos="0.044882 0.027 0.01545" quat="0.707105 -0.707108 0 0">
+									<inertial pos="-0.0461882 -0.0090998 -0.0266365" quat="0.494929 0.498594 0.504708 0.501717" mass="0.0210071" diaginertia="2.69032e-05 1.78035e-05 1.24679e-05" />
+									<joint name="robot0:gripper_left" pos="0 0 0" axis="0 0 1" limited="true" range="0 1" />
+									<geom type="mesh" rgba="1 0.6 0 1" mesh="L_Link" name="robot0:L_Link" />
+								</body>
+								<body childclass="robot0:fetchGripper" name="R_Link" pos="0.044882 0.03 -0.00955" quat="0.707105 -0.707108 0 0">
+									<inertial pos="-0.046331 0.0089356 -0.029044" quat="0.49432 0.509869 0.508791 0.486634" mass="0.020942" diaginertia="2.64095e-05 1.76895e-05 1.2115e-05" />
+									<joint name="robot0:gripper_right" pos="0 0 0" axis="0 0 -1" limited="true" range="0 1" />
+									<geom type="mesh" rgba="0.3098 0.3098 0.3098 1" mesh="R_Link" name="robot0:R_Link" />
+								</body>
+								<site name="robot0:grip" pos="0.02 0 0" rgba="0 0 0 0" size="0.02 0.02 0.02"></site>
+							</body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+	</body>
+</mujoco>

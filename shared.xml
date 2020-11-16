@@ -1,0 +1,42 @@
+<mujoco>
+	<asset>
+		<texture type="skybox" builtin="gradient" rgb1="0.55 0.85 0.56" rgb2="0.46 0.87 0.58" width="32" height="32"></texture>
+        
+		
+		<mesh name="base_link" file="base_link.STL" ></mesh>
+        <mesh name="Link2" file="Link2.STL" ></mesh>
+        <mesh name="Link3" file="Link3.STL" ></mesh>
+        <mesh name="Link4" file="Link4.STL" ></mesh>
+        <mesh name="Link5" file="Link5.STL" ></mesh>
+        <mesh name="Link6" file="Link6.STL" ></mesh>
+        <mesh name="L_Link" file="L_Link.STL" ></mesh>
+        <mesh name="R_Link" file="R_Link.STL" ></mesh>
+	</asset>
+	
+	<equality>
+        <weld body1="robot0:mocap" body2="robot0:gripper_link" solimp="0.9 0.95 0.001" solref="0.02 1"></weld>
+    </equality>
+	
+	<contact>
+		<exclude body1="L_Link" body2="R_Link"></exclude>
+	</contact>
+	
+	<default>
+		<default class="robot0:fetch">
+			<geom margin="0.001" rgba="1 1 1 1" solimp="0.99 0.99 0.01" solref="0.01 1" type="mesh" user="0"></geom>
+            <joint armature="1" damping="50" frictionloss="0" stiffness="0"></joint>
+			
+			<default class="robot0:fetchGripper">
+                <geom condim="4" margin="0.001" user="0" rgba="0.356 0.361 0.376 1.0"></geom>
+                <joint armature="10" damping="1000" limited="true" solimplimit="0.99 0.999 0.01" solreflimit="0.01 1" ></joint>
+            </default>
+			
+			<default class="robot0:grey">
+                <geom rgba="0.356 0.361 0.376 1.0"></geom>
+            </default>
+            <default class="robot0:blue">
+                <geom rgba="0.086 0.506 0.767 1.0"></geom>
+            </default>
+		</default>
+	</default>	
+</mujoco>
